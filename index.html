@@ -6,9 +6,62 @@
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    var data = [
+      {ytId: 'ZscNOzYE4UM', title: 'Day 01', subject: 'Why consecration to St. Joseph?'},
+      {ytId: 'hz0Y05WGw5E', title: 'Day 02', subject: 'The Litany of St. Joseph'},
+      {ytId: 'ChIdnk92gac', title: 'Day 03', subject: 'God, the Father of Heaven.'},
+      {ytId: 'm6od7Kcq6RM', title: 'Day 04', subject: 'God the Son, Redeemer of the world.'},
+      {ytId: 'iUcyCMgVbmA', title: 'Day 05', subject: 'God the Holy Spirit.'},
+
+      {ytId: 'rADFpsKLgno', title: 'Day 06', subject: 'Holy Trinity, One God.'},
+      {ytId: 'xkEr5hhSApE', title: 'Day 07', subject: 'Holy Mary.'},
+      {ytId: 'Ugv0HVC54qU', title: 'Day 08', subject: 'Saint Joseph.'},
+      {ytId: 'W04jsNoueR4', title: 'Day 09', subject: 'Noble OffSpring of David.'},
+      {ytId: 'sjIX7zNkxcc', title: 'Day 10', subject: 'Light of Patriarchs.'},
+      
+      {ytId: 'NRjTsfkDgkU', title: 'Day 11', subject: 'Spouse of the Mother of God.'},
+      {ytId: 'wrINpzKW-wk', title: 'Day 12', subject: 'Chaste Guardian of the Virgin.'},
+      {ytId: 'QdAaTpJnJRk', title: 'Day 13', subject: 'Froster-Father of the Son of God.'},
+      {ytId: 'fBsbZlulyA8', title: 'Day 14', subject: 'Zealous Defender of Christ.'},
+      {ytId: 'BrMxCJdtcac', title: 'Day 15', subject: 'Head of the Holy Family.'},
+
+      {ytId: 'GIiIiN7RB_8', title: 'Day 16', subject: 'Joseph Most Just.'},
+      {ytId: 'sb3RzGcLIsc', title: 'Day 17', subject: 'Joseph Most Chaste.'},
+      {ytId: 'MtezFbLVxf8', title: 'Day 18', subject: 'Joseph Most Prudent.'},
+      {ytId: '9Cvi2f0vVcA', title: 'Day 19', subject: 'Joseph Most Courageous.'},
+      {ytId: 'zud_8guPD6U', title: 'Day 20', subject: 'Joseph Most Obedient.'},
+
+      {ytId: 'YL6hNZnWqdw', title: 'Day 21', subject: 'Joseph Most Faithful.'},
+      {ytId: '9luxre7EAK4', title: 'Day 22', subject: 'Mirror of Patience.'},
+      {ytId: 'Miwsjc4k-2I', title: 'Day 23', subject: 'Lover of Poverty.'},
+      {ytId: 'u2Nm-jy1MAI', title: 'Day 24', subject: 'Model of Workmen.'},
+      {ytId: 'b4t7lpCxOc8', title: 'Day 25', subject: 'Glory of Domestic Life.'},
+
+      {ytId: '3K18eUcnAWY', title: 'Day 26', subject: 'Guardian of Virgins.'},
+      {ytId: 'QiHpckGlv5Q', title: 'Day 27', subject: 'Pillar of Families.'},
+      {ytId: 'Re7yEHK1WPo', title: 'Day 28', subject: 'Comfort of the Afflicted.'},
+      {ytId: '9d0yprzq79A', title: 'Day 29', subject: 'Hope of the Sick.'},
+      {ytId: 'DYLatoIsQJQ', title: 'Day 30', subject: 'Patron of the Dying.'},
+
+      {ytId: 'Z_zo2NLof_s', title: 'Day 31', subject: 'Terror of Demons.'},
+      {ytId: 'Ni6E_w9uDSg', title: 'Day 32', subject: 'Protector of the Holy Church.'},
+      {ytId: '-Oimf_Rj2Ls', title: 'Day 33', subject: 'He made Him the Lord of His household and Prince over all His possessions'},
+      {ytId: '19gYnHp52l8', title: 'After the Consecration', subject: 'Ite ad Ioseph.'}
+    ];
+
     $(document).ready(function() {
       // animate the background image
       $('body').animate({"background-position-x": "-=50px"}, 5000);
+
+
+      // render the menu of 33 days
+      data.forEach(function (item) {
+        var htmlText = '<div class="tooltip">' +
+          '<a href="https://www.youtube.com/watch?v=' + item.ytId + '" data-ytId="' + item.ytId + '" class="play-video">' + item.title + '</a>' +
+          '<div class="left">' + item.subject + '<i></i></div>' +
+        '</div>';
+        $('.menu').append(htmlText);
+      });
 
       // `.play-video` click handler
       $('.play-video').click(function(e) {
@@ -21,6 +74,7 @@
 
         e.preventDefault();
       });
+
     });
   </script>
   <script>
@@ -138,6 +192,57 @@
       float: right;
       padding: 3px;
     }
+
+    /* tool tip */
+    .tooltip {
+      position:relative;
+      text-align:left;
+    }
+
+    .tooltip .left {
+      width:100%; 
+      top:50%;
+      right:100%;
+      margin-right:20px;
+      transform:translate(0, -50%);
+      padding:10px 20px;
+      color: #f5f2f2;
+      background-color: rgb(0 0 0 / 67%);
+      font-weight:bold;
+      font-size:medium;
+      border-radius:8px;
+      position:absolute;
+      z-index:99999999;
+      box-sizing:border-box;
+      box-shadow:0 1px 8px rgba(0,0,0,0.5);
+      visibility:hidden; opacity:0; transition:opacity 0.8s;
+    }
+
+    .tooltip:hover .left {
+      visibility:visible; opacity:1;
+    }
+
+    .tooltip .left i {
+      position:absolute;
+      top:50%;
+      left:100%;
+      margin-top:-12px;
+      width:12px;
+      height:24px;
+      overflow:hidden;
+    }
+
+    .tooltip .left i::after {
+      content:'';
+      position:absolute;
+      width:12px;
+      height:12px;
+      left:0;
+      top:50%;
+      transform:translate(-50%,-50%) rotate(-45deg);
+      background-color: rgb(0 0 0 / 67%);
+      box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body>
@@ -146,111 +251,9 @@
       <h1>Consecration to St Joseph</h1>
       <h4>The Wonders of our Spiritual Father</h4>
     </div>
+    <!-- 33 days menu items -->
+    <div class="menu"></div>
 
-    <div class="menu">
-      <div>
-        <a href="https://www.youtube.com/watch?v=ZscNOzYE4UM" data-ytId="ZscNOzYE4UM" class="play-video">Day 01</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=ChIdnk92gac" data-ytId="ChIdnk92gac" class="play-video">Day 02</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=hz0Y05WGw5E" data-ytId="hz0Y05WGw5E" class="play-video">Day 03</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=m6od7Kcq6RM" data-ytId="m6od7Kcq6RM" class="play-video">Day 04</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=iUcyCMgVbmA" data-ytId="iUcyCMgVbmA" class="play-video">Day 05</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=rADFpsKLgno" data-ytId="rADFpsKLgno" class="play-video">Day 06</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=xkEr5hhSApE" data-ytId="xkEr5hhSApE" class="play-video">Day 07</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=Ugv0HVC54qU" data-ytId="Ugv0HVC54qU" class="play-video">Day 08</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=W04jsNoueR4" data-ytId="W04jsNoueR4" class="play-video">Day 09</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=sjIX7zNkxcc" data-ytId="sjIX7zNkxcc" class="play-video">Day 10</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=NRjTsfkDgkU" data-ytId="NRjTsfkDgkU" class="play-video">Day 11</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=wrINpzKW-wk" data-ytId="wrINpzKW-wk" class="play-video">Day 12</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=QdAaTpJnJRk" data-ytId="QdAaTpJnJRk" class="play-video">Day 13</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=fBsbZlulyA8" data-ytId="fBsbZlulyA8" class="play-video">Day 14</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=BrMxCJdtcac" data-ytId="BrMxCJdtcac" class="play-video">Day 15</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=GIiIiN7RB_8" data-ytId="GIiIiN7RB_8" class="play-video">Day 16</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=sb3RzGcLIsc" data-ytId="sb3RzGcLIsc" class="play-video">Day 17</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=MtezFbLVxf8" data-ytId="MtezFbLVxf8" class="play-video">Day 18</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=9Cvi2f0vVcA" data-ytId="9Cvi2f0vVcA" class="play-video">Day 19</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=zud_8guPD6U" data-ytId="zud_8guPD6U" class="play-video">Day 20</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=YL6hNZnWqdw" data-ytId="YL6hNZnWqdw" class="play-video">Day 21</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=9luxre7EAK4" data-ytId="9luxre7EAK4" class="play-video">Day 22</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=Miwsjc4k-2I" data-ytId="Miwsjc4k-2I" class="play-video">Day 23</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=u2Nm-jy1MAI" data-ytId="u2Nm-jy1MAI" class="play-video">Day 24</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=b4t7lpCxOc8" data-ytId="b4t7lpCxOc8" class="play-video">Day 25</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=3K18eUcnAWY" data-ytId="3K18eUcnAWY" class="play-video">Day 26</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=QiHpckGlv5Q" data-ytId="QiHpckGlv5Q" class="play-video">Day 27</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=Re7yEHK1WPo" data-ytId="Re7yEHK1WPo" class="play-video">Day 28</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=9d0yprzq79A" data-ytId="9d0yprzq79A" class="play-video">Day 29</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=DYLatoIsQJQ" data-ytId="DYLatoIsQJQ" class="play-video">Day 30</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=Z_zo2NLof_s" data-ytId="Z_zo2NLof_s" class="play-video">Day 31</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=Ni6E_w9uDSg" data-ytId="Ni6E_w9uDSg" class="play-video">Day 32</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=-Oimf_Rj2Ls" data-ytId="-Oimf_Rj2Ls" class="play-video">Day 33</a>
-      </div>
-      <div>
-        <a href="https://www.youtube.com/watch?v=19gYnHp52l8" data-ytId="19gYnHp52l8" class="play-video">After the Consecration</a>
-      </div>
-    </div>
     <div class="content">
       <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
       <div id="player"></div>
